@@ -1,0 +1,28 @@
+[project]
+name = "brief-computer-vision"
+version = "0.1.0"
+description = "entrainement d'un modèle YOLO pour la détection de feu depuis des images, des videos ou une camera en temps réel"
+authors = [
+    {name = "Malek BOUMEDINE",email = "malek.boumedine@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "roboflow (>=1.1.65,<2.0.0)",
+    "ultralytics (>=8.3.149,<9.0.0)",
+    "opencv-python (>=4.11.0.86,<5.0.0.0)",
+    "streamlit (>=1.45.1,<2.0.0)",
+    "fastapi (>=0.115.12,<0.116.0)",
+    "django (>=5.2.1,<6.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
