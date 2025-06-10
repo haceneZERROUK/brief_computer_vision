@@ -194,3 +194,4 @@ cython_debug/
 .cursorindexingignore
 /FIRE-1
 static
+.streamlit
