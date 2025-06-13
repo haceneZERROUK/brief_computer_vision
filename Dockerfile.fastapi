@@ -1,0 +1,30 @@
+# Utilise une image Python légère (version 3.9) comme base pour le conteneur FastAPI.
+FROM python:3.9-slim-buster
+
+# Définit le répertoire de travail dans le conteneur Docker. Toutes les commandes suivantes
+# seront exécutées à partir de ce répertoire.
+WORKDIR /app
+
+# Copie le fichier `requirements.txt` de votre dossier `api/` vers le répertoire de travail `/app` du conteneur.
+# Ceci est fait en premier pour que Docker puisse mettre en cache l'installation des dépendances.
+COPY api/requirements.txt .
+
+# Installe toutes les dépendances Python listées dans `requirements.txt`.
+# `--no-cache-dir` optimise la taille de l'image en ne stockant pas les paquets téléchargés de pip.
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copie l'intégralité du répertoire `api/` (qui contient tout le code de votre API, y compris le modèle `best.pt`)
+# de votre machine hôte vers le dossier `/app/api/` dans le conteneur.
+COPY api/ /app/api/
+
+# Expose le port sur lequel votre application FastAPI va écouter à l'intérieur du conteneur.
+# Cela permet à d'autres conteneurs ou à la machine hôte d'y accéder.
+EXPOSE 8086
+
+# Définit la commande par défaut qui sera exécutée lorsque le conteneur démarre.
+# Ceci lance le serveur Uvicorn, qui est le serveur ASGI recommandé pour FastAPI.
+# - `api.app.main:app` : Spécifie que l'application FastAPI est l'objet `app`
+#   dans le module `main.py` qui se trouve dans `api/app/`.
+# - `--host 0.0.0.0` : Rend l'API accessible depuis n'importe quelle adresse IP à l'intérieur du conteneur.
+# - `--port 8086` : Spécifie le port sur lequel Uvicorn doit écouter.
+CMD ["uvicorn", "api.app.main:app", "--host", "0.0.0.0", "--port", "8086"]

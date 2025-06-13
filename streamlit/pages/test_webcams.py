@@ -45,8 +45,10 @@ st.title("🔥 Détection d'incendie en direct via API") # Définit le titre pri
 # --- Configuration Générale de l'Application ---
 API_URL_WEBCAM = "http://localhost:8086/detect_fire_webcam" # URL du point de terminaison de l'API FastAPI
                                                            # dédié au traitement des images de la webcam.
-DUCKDB_PATH = "fire_detections.duckdb" # Nom du fichier de la base de données DuckDB.
+#DUCKDB_PATH = "fire_detections.duckdb" # Nom du fichier de la base de données DuckDB.
                                       # Ce fichier sera créé localement dans le répertoire d'exécution du script Streamlit.
+
+DUCKDB_PATH = "/app/fire_detections.duckdb"
 FIRE_DETECTION_CONFIDENCE_THRESHOLD = 0.4 # Seuil de confiance (valeur entre 0 et 1) au-delà duquel une détection
                                         # est considérée comme un "feu" valide, déclenchant l'alerte visuelle
                                         # et l'enregistrement en base de données.

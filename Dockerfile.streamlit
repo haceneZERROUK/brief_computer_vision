@@ -1,0 +1,30 @@
+# Utilise une image Python légère (version 3.9) comme base pour le conteneur Streamlit.
+FROM python:3.9-slim-buster
+
+# Définit le répertoire de travail dans le conteneur Docker. Toutes les commandes suivantes
+# seront exécutées à partir de ce répertoire.
+WORKDIR /app
+
+# Copie le fichier `requirements.txt` de votre dossier `streamlit/` vers le répertoire de travail `/app` du conteneur.
+# Ceci est fait avant de copier tout le code pour que Docker puisse mettre en cache l'installation des dépendances.
+COPY streamlit/requirements.txt .
+
+# Installe toutes les dépendances Python listées dans `requirements.txt`.
+# `--no-cache-dir` optimise la taille de l'image en ne stockant pas les paquets téléchargés de pip.
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copie l'intégralité du répertoire `streamlit/` (qui contient votre app.py et le dossier 'pages/')
+# de votre machine hôte vers le dossier `/app/streamlit/` dans le conteneur.
+COPY streamlit/ /app/streamlit/
+
+# Expose le port par défaut sur lequel l'application Streamlit va écouter à l'intérieur du conteneur.
+# C'est le port interne du conteneur, qui sera ensuite mappé vers l'hôte.
+EXPOSE 8501
+
+# Définit la commande par défaut qui sera exécutée lorsque le conteneur démarre.
+# Ceci lance votre application Streamlit, spécifiant le chemin de votre page principale.
+# - `streamlit/app.py` : Le chemin vers votre script Streamlit principal à l'intérieur du conteneur.
+# - `--server.port 8501` : Spécifie le port interne sur lequel Streamlit doit écouter.
+# - `--server.address 0.0.0.0` : Rend l'application accessible depuis n'importe quelle adresse IP à l'intérieur du conteneur,
+#   ce qui est essentiel pour l'accès depuis l'hôte.
+CMD ["streamlit", "run", "streamlit/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]

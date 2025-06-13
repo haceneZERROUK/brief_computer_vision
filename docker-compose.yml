@@ -1,0 +1,36 @@
+version: '3.8' # Spécifie la version de Docker Compose.
+
+services:
+  # Définition du service pour l'API FastAPI.
+  fastapi_service:
+    build:
+      context: .                  # Le contexte de construction est le répertoire courant (racine du projet brief_computer_vision/).
+      dockerfile: Dockerfile.fastapi # Spécifie le `Dockerfile.fastapi` à utiliser pour construire cette image.
+    ports:
+      - "8086:8086"               # Mappe le port 8086 de la machine hôte au port 8086 du conteneur.
+                                  # C'est ainsi que vous accéderez à l'API depuis votre navigateur ou d'autres outils.
+    command: ["uvicorn", "api.app.main:app", "--host", "0.0.0.0", "--port", "8086"] # Commande pour lancer l'API FastAPI.
+
+  # Définition du service pour l'application Streamlit.
+  streamlit_app:
+    build:
+      context: .                  # Le contexte de construction est le répertoire courant.
+      dockerfile: Dockerfile.streamlit # Spécifie le `Dockerfile.streamlit` à utiliser pour construire cette image.
+    ports:
+      - "8501:8501"               # Mappe le port 8501 de la machine hôte au port 8501 du conteneur (port par défaut de Streamlit).
+    volumes:
+      # Montage d'un volume pour la persistance de la base de données DuckDB.
+      # `fire_data` est un volume nommé défini ci-dessous. Il sera monté à `/app/fire_detections.duckdb` dans le conteneur.
+      # Ceci garantit que votre base de données DuckDB n'est pas perdue lorsque le conteneur Streamlit est redémarré ou supprimé.
+      - fire_data:/app/fire_detections.duckdb
+      # Optionnel: Montage du répertoire 'streamlit' pour le développement actif de l'application Streamlit.
+      # Décommentez si vous voulez que les modifications de code dans 'streamlit/' soient reflétées sans reconstruire l'image.
+      # - ./streamlit:/app/streamlit
+    depends_on:
+      - fastapi_service           # Indique que le service `streamlit_app` dépend de `fastapi_service`.
+                                  # Docker Compose s'assurera que `fastapi_service` est démarré avant `streamlit_app`.
+    command: ["streamlit", "run", "streamlit/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"] # Chemin corrigé vers app.py
+# Définition des volumes nommés utilisés par les services.
+# Un volume nommé `fire_data` est créé et géré par Docker pour la persistance de vos données.
+volumes:
+  fire_data:
