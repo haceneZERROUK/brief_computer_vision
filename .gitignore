@@ -195,3 +195,7 @@ cython_debug/
 /FIRE-1
 static
 .streamlit
+FIRE-1
+smokeandfire-2
+FireANDSmoke-1
+yolo*.pt
