@@ -9,7 +9,9 @@ st.markdown("# 🔥 Bienvenue chez Ignis")
 st.markdown("### L'intelligence artificielle au service de la détection précoce d'incendies")
 
 # Image illustrative
-image = Image.open("image.png")  # Remplace par une image locale ou supprime cette ligne si inutile
+# image = Image.open("image.png")  # Remplace par une image locale ou supprime cette ligne si inutile
+image = Image.open("streamlit/image.png")
+
 st.image(image, use_container_width=True, caption="Détection de feu via caméras et satellites")
 
 # Présentation

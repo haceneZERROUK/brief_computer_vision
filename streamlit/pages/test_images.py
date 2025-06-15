@@ -20,7 +20,8 @@ Fonctionnalités principales :
 
 # --- Configuration Générale de l'Application ---
 # URL de l'API FastAPI pour la détection d'incendie à partir d'une URL d'image.
-API_URL = "http://localhost:8086/detect_fire_url"
+# API_URL = "http://localhost:8086/detect_fire_url"     # localhost
+API_URL = "http://fastapi:8086/detect_fire_url"       # docker
 
 # --- Configuration de la Page Streamlit ---
 #st.set_page_config(layout="centered") # Définit la mise en page de l'application Streamlit.
@@ -74,7 +75,7 @@ if st.button("Lancer la détection", help="Cliquez pour envoyer l'image à l'API
             
             except requests.exceptions.ConnectionError:
                 # Gère les erreurs de connexion à l'API (ex: API non lancée, problème réseau).
-                st.error("❌ Impossible de se connecter à l'API. Assurez-vous que FastAPI est bien lancé sur `http://localhost:8086`.")
+                st.error(f"❌ Impossible de se connecter à l'API. Assurez-vous que FastAPI est bien lancé sur {API_URL}")
             except requests.exceptions.HTTPError as e:
                 # Gère les erreurs HTTP retournées par l'API (ex: 400 Bad Request, 500 Internal Server Error).
                 # Tente d'extraire des détails d'erreur du corps de la réponse JSON de l'API.
