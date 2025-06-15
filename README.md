@@ -1,10 +1,3 @@
-Avec plaisir !
-Voici ton README complet, **avec la bonne section contributeurs** (liens cliquables), **l’accès Azure** bien mis en avant, et tout le reste relu et bien structuré : tu peux copier-coller tel quel.
-Si tu veux le badge Azure (optionnel, mais stylé pour attirer l’œil sur la démo en ligne), c’est inclus !
-
----
-
-````markdown
 # 🔥 Système de Détection d'Incendie en Temps Réel (Webcam & URL)
 
 [![Accéder à l'application sur Azure](https://img.shields.io/badge/DEMO%20EN%20LIGNE-AZURE-blue?logo=microsoft-azure)](http://fastapi-streamlit-demo.francecentral.azurecontainer.io:8501/)
