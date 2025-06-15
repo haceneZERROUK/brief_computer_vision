@@ -167,10 +167,10 @@ L’historique de vos détections est donc conservé même après arrêt/redéma
 
 <table>
   <tr>
-    <td align="center"><b>[Khadija Aassi]</b></td>
-    <td align="center"><b>[Khadija Abdelmalek]</b></td>
-    <td align="center"><b>[Malek Boumedine]</b></td>
-    <td align="center"><b>[Hacène Zerrouk]</b></td>
+    <td align="center"><b>[Khadija Aassi](https://github.com/Khadaassi)</b></td>
+    <td align="center"><b>[Khadija Abdelmalek](https://github.com/khadmalek)</b></td>
+    <td align="center"><b>[Malek Boumedine(https://github.com/Malek-Boumedine)]</b></td>
+    <td align="center"><b>[Hacène Zerrouk](https://github.com/haceneZERROUK)</b></td>
   </tr>
 </table>
 
