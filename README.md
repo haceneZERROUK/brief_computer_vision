@@ -1,7 +1,24 @@
+Avec plaisir !
+Voici ton README complet, **avec la bonne section contributeurs** (liens cliquables), **l’accès Azure** bien mis en avant, et tout le reste relu et bien structuré : tu peux copier-coller tel quel.
+Si tu veux le badge Azure (optionnel, mais stylé pour attirer l’œil sur la démo en ligne), c’est inclus !
+
+---
+
+````markdown
 # 🔥 Système de Détection d'Incendie en Temps Réel (Webcam & URL)
+
+[![Accéder à l'application sur Azure](https://img.shields.io/badge/DEMO%20EN%20LIGNE-AZURE-blue?logo=microsoft-azure)](http://fastapi-streamlit-demo.francecentral.azurecontainer.io:8501/)
+
+---
 
 Ce projet propose une solution complète pour la détection d'incendies en temps réel, combinant une API robuste basée sur **FastAPI** pour le traitement des images et une interface utilisateur interactive développée avec **Streamlit**.  
 Il permet la détection d'incendies à partir de flux webcam en direct ou d'images fournies par URL, avec un enregistrement des détections dans une base de données locale.
+
+---
+
+## 🌐 Accès en ligne
+
+➡️ **[Cliquez ici pour accéder à l'application Streamlit (Azure)](http://fastapi-streamlit-demo.francecentral.azurecontainer.io:8501/)**
 
 ---
 
@@ -13,6 +30,7 @@ Il permet la détection d'incendies à partir de flux webcam en direct ou d'imag
 - **Interface Utilisateur Streamlit** : Application web conviviale pour visualiser les détections en direct, gérer la webcam et consulter l'historique.
 - **Base de Données Locale (DuckDB)** : Enregistrement persistant des détections de feu (avec timestamp, source et confiance) pour la traçabilité et l'analyse ultérieure.
 - **Déploiement Dockerisé** : L'ensemble de l'application est conteneurisé avec Docker Compose pour un déploiement local facile et isolé.
+- **Déploiement Cloud (Azure)** : L'application est déployée et accessible en ligne via Microsoft Azure.
 
 ---
 
@@ -147,6 +165,7 @@ L’historique de vos détections est donc conservé même après arrêt/redéma
 * **DuckDB** : Base de données OLAP locale
 * **Docker & Docker Compose** : Conteneurisation
 * **Python 3.9**
+* **Azure** : Hébergement cloud
 
 ---
 
@@ -184,4 +203,7 @@ L’historique de vos détections est donc conservé même après arrêt/redéma
 
 </section>
 
+---
 
+Bravo à toute l’équipe pour le déploiement et le projet ! 🚀
+```
