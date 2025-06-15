@@ -7,7 +7,7 @@ from PIL import Image
 import io
 import cv2
 import base64
-from fastapi.ml import detect_fire_image
+from api_fastapi.ml import detect_fire_image
 
 router = APIRouter()
 

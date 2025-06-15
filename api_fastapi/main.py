@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from fastapi.endpoints.detect_image import router as image_router
-from fastapi.endpoints.detect_webcam import router as webcam_router
+from api_fastapi.endpoints.detect_image import router as image_router
+from api_fastapi.endpoints.detect_webcam import router as webcam_router
 
 """
 Point d'entrée principal de l'API de détection de feu et fumée avec YOLO11.

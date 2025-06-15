@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from datetime import datetime
 import cv2
 import base64
-from fastapi.ml import detect_fire_webcam
+from api_fastapi.ml import detect_fire_webcam
 
 router = APIRouter()
 
