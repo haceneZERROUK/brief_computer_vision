@@ -16,6 +16,13 @@ Il permet la détection d'incendies à partir de flux webcam en direct ou d'imag
 
 ---
 
+## 🌐 Accès en ligne
+
+L’application est en ligne sur Azure ici :  
+http://fastapi-streamlit-demo.francecentral.azurecontainer.io:8501/
+
+---
+
 ## 🏗️ Architecture du Projet
 
 Le système est conçu avec une **architecture de microservices**, divisée en deux composants principaux s'exécutant dans des conteneurs Docker distincts :
@@ -154,7 +161,7 @@ L’historique de vos détections est donc conservé même après arrêt/redéma
 
 * Authentification utilisateur
 * Notifications (e-mail, SMS) en cas d'alerte
-* Déploiement sur cloud (AWS, Google Cloud, Azure…)
+* Déploiement sur Azure
 * Amélioration/entraînement du modèle YOLO
 * Interface d’admin (gestion des seuils, détections…)
 * Support multi-caméras/sources vidéo
