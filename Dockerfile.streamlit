@@ -1,0 +1,36 @@
+FROM python:3.11-slim
+
+# Installer les outils nécessaires à la compilation et curl
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        gcc \
+        libffi-dev \
+        python3-dev \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installer Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+ENV PATH="/root/.local/bin:$PATH"
+
+WORKDIR /app
+
+# Copier les fichiers de dépendances Poetry
+COPY pyproject.toml poetry.lock ./
+
+# Désactiver la création d'environnements virtuels Poetry
+RUN poetry config virtualenvs.create false
+
+# Installer les dépendances
+RUN poetry install --no-root
+
+# Copier le code de l'application Streamlit
+COPY streamlit/ /app/streamlit/
+
+
+EXPOSE 8501
+
+# Lancer l'application Streamlit
+CMD ["streamlit", "run", "streamlit/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]

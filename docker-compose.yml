@@ -1,0 +1,28 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  # Service pour l'API FastAPI
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    container_name: fast_api_app_container
+    ports:
+      - "8086:8086"
+    devices:
+      - "/dev/video0:/dev/video0"
+    # Le nom du service 'fastapi' devient son nom d'hôte sur le réseau Docker
+
+  # Service pour l'application Streamlit
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: streamlit_app_container
+    ports:
+      - "8501:8501"
+    depends_on:
+      - fastapi # S'assure que l'API démarre avant Streamlit
+

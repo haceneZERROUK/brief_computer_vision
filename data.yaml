@@ -1,0 +1,12 @@
+names:
+ 0: fire
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: fire-vqbia
+  url: https://universe.roboflow.com/ltttnt/fire-vqbia/dataset/1
+  version: 1
+  workspace: ltttnt
+train: FIRE-1/train/images
+test: FIRE-1/tet/images
+val: FIRE-1/valid/images

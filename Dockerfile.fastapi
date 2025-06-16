@@ -1,0 +1,38 @@
+# Dockerfile - Version Corrigée avec la bibliothèque libGL
+
+FROM python:3.11-slim
+
+# Ajoute libgl1-mesa-glx pour les dépendances graphiques d'OpenCV
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        curl \
+        build-essential \
+        gcc \
+        python3-dev \
+        libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installe Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
+
+# Définit le répertoire de travail
+WORKDIR /app
+
+# Désactive la création de venv par Poetry
+RUN poetry config virtualenvs.create false
+
+# Copie les fichiers de dépendances en premier pour profiter du cache Docker
+COPY pyproject.toml poetry.lock ./
+
+# Installe les dépendances du projet en utilisant le lock file.
+RUN poetry install --no-interaction --no-ansi
+
+# Copie le code de l'application
+COPY ./api_fastapi /app/api_fastapi
+COPY best.pt .
+
+EXPOSE 8086
+
+# Lance l'application
+CMD ["uvicorn", "api_fastapi.main:app", "--host", "0.0.0.0", "--port", "8086"]
